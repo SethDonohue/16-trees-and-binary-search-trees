@@ -1,6 +1,7 @@
 'use strict';
 
 const Queue = require('./lib/queue');
+const Stack = require('./lib/stack');
 
 class KAryTree{
   constructor(value){
@@ -15,16 +16,36 @@ class KAryTree{
 
   breadthFirstSearch(){
     let queue = new Queue();
-    queue.enqueue = this;
+    queue.enqueue(this);
     let current = null;
 
-    while(queue.getLenth() > 0){
+    while(queue.getLength() > 0){
       current = queue.dequeue();
       console.log(`Visiting ${current.value}`);
       for(let child of current._children)
         queue.enqueue(child);
     }
   }
+
+  depthFirstSearch(){
+    let stack = new Stack();
+    stack.push(this);
+    let current = null;
+
+    while(stack.getLength() > 0){
+      current = stack.pop();
+      console.log(`Visiting ${current.value}`);
+      for(let child of current._children)
+        stack.push(child);
+    }
+  }
+
+  //TODO: ADD FIND METHOD USING BREADTH FIRST TRAVERSAL
+  
+  //TODO: ADD toString METHOD USING BREADTH FIRST TRAVERSAL
+  
+  //TODO: ADD toArray METHOD USING DEPTH FIRST TRAVERSAL, need stack for this to work
+
 }
 
 let one = new KAryTree(1);

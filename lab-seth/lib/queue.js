@@ -14,7 +14,7 @@ class Queue{
   }
 
   getLength(){
-    return this.data.length();
+    return this._data.length;
   }
 }
 

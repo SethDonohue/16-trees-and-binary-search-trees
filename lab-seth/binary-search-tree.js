@@ -37,4 +37,6 @@ class BinarySearchTree{
     if(this.left !== null) return this.left.find(value); return false;
   }
 
+  //TODO: ADD REMOVE METHOD
+
 }
