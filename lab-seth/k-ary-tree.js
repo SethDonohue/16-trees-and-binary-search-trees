@@ -3,65 +3,65 @@
 const Queue = require('./lib/queue');
 const Stack = require('./lib/stack');
 
-class KAryTree{
-  constructor(value){
-    this.value = value;
-    this._children = [];
+const KAryTree = function(value){
+  this.value = value;
+  this._children = [];
+};
+
+KAryTree.prototype.appendChild = function(tree){
+  if(!(tree instanceof KAryTree)) throw new TypeError('must insert a k-ary-tree');
+  this._children.push(tree);
+};
+
+KAryTree.prototype.breadthFirstSearch = function(){
+  let queue = new Queue();
+  queue.enqueue(this);
+  let current = null;
+
+  while(queue.getLength() > 0){
+    current = queue.dequeue();
+    console.log(`Visiting ${current.value}`);
+    for(let child of current._children)
+      queue.enqueue(child);
   }
+};
 
-  appendChild(tree){
-    if(!(tree instanceof KAryTree)) throw new TypeError('must insert a k-ary-tree');
-    this._children.push(tree);
+KAryTree.prototype.depthFirstSearch = function(){
+  let stack = new Stack();
+  stack.push(this);
+  let current = null;
+
+  while(stack.getLength() > 0){
+    current = stack.pop();
+    console.log(`Visiting ${current.value}`);
+    for(let child of current._children)
+      stack.push(child);
   }
+};
 
-  breadthFirstSearch(){
-    let queue = new Queue();
-    queue.enqueue(this);
-    let current = null;
+KAryTree.prototype.find = function(value){
+  if(typeof value !== 'number') throw new TypeError('Value is not a number');
 
-    while(queue.getLength() > 0){
-      current = queue.dequeue();
-      console.log(`Visiting ${current.value}`);
-      for(let child of current._children)
-        queue.enqueue(child);
+  let queue = new Queue();
+  queue.enqueue(this);
+  let current = null;
+
+  while (queue.getLength() > 0) {
+    current = queue.dequeue();
+    if(current.value === value){
+      return current;
+    }
+      
+    for (let child of current._children){
+      queue.enqueue(child);
     }
   }
+};
 
-  depthFirstSearch(){
-    let stack = new Stack();
-    stack.push(this);
-    let current = null;
+//TODO: ADD toString METHOD USING BREADTH FIRST TRAVERSAL
 
-    while(stack.getLength() > 0){
-      current = stack.pop();
-      console.log(`Visiting ${current.value}`);
-      for(let child of current._children)
-        stack.push(child);
-    }
-  }
+//TODO: ADD toArray METHOD USING DEPTH FIRST TRAVERSAL, need stack for this to work
 
-  find(value){
-    let queue = new Queue();
-    queue.enqueue(this);
-    let current = null;
-
-    while (queue.getLength() > 0) {
-      current = queue.dequeue();
-      if(current.value === value){
-        return current;
-      }
-        
-      for (let child of current._children){
-        queue.enqueue(child);
-      }
-    }
-  }
-  
-  //TODO: ADD toString METHOD USING BREADTH FIRST TRAVERSAL
-  
-  //TODO: ADD toArray METHOD USING DEPTH FIRST TRAVERSAL, need stack for this to work
-
-}
 
 let one = new KAryTree(1);
 let two = new KAryTree(2);
