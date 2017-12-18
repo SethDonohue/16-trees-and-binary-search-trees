@@ -40,7 +40,22 @@ class KAryTree{
     }
   }
 
-  //TODO: ADD FIND METHOD USING BREADTH FIRST TRAVERSAL
+  find(value){
+    let queue = new Queue();
+    queue.enqueue(this);
+    let current = null;
+
+    while (queue.getLength() > 0) {
+      current = queue.dequeue();
+      if(current.value === value){
+        return current;
+      }
+        
+      for (let child of current._children){
+        queue.enqueue(child);
+      }
+    }
+  }
   
   //TODO: ADD toString METHOD USING BREADTH FIRST TRAVERSAL
   
@@ -66,3 +81,9 @@ three.appendChild(six);
 three.appendChild(seven);
 
 six.appendChild(eight);
+
+// console.log(one.find(10));
+// console.log(one._children[1]._children[1]._children[0]);
+// console.log(one._children[1]._children[2]);
+
+module.exports = KAryTree;
