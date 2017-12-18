@@ -56,6 +56,7 @@ KAryTree.prototype.find = function(value){
       queue.enqueue(child);
     }
   }
+  return null;
 };
 
 //TODO: ADD toString METHOD USING BREADTH FIRST TRAVERSAL
