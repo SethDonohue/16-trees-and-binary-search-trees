@@ -25,17 +25,10 @@ const kAryTreeBuilder = () => {
   return one;
 };
 
-const expectedFullTreeString = `{"value":1,"_children":[{"value":2,"_children":[]},{"value":3,"_children":[{"value":5,"_children":[]},{"value":6,"_children":[{"value":8,"_children":[]}]},{"value":7,"_children":[]}]},{"value":4,"_children":[]}]}
-{"value":2,"_children":[]}
-{"value":3,"_children":[{"value":5,"_children":[]},{"value":6,"_children":[{"value":8,"_children":[]}]},{"value":7,"_children":[]}]}
-{"value":4,"_children":[]}
-{"value":5,"_children":[]}
-{"value":6,"_children":[{"value":8,"_children":[]}]}
-{"value":7,"_children":[]}
-{"value":8,"_children":[]}`;
-
-const expectedTwoTreeString = `{"value":2,"_children":[]}`;
-
+const expectedFullTreeString = `1\n2\n3\n4\n5\n6\n7\n8`;
+const expectedTwoTreeString = `2`;
+const expectedFullTreeArray = [1,4,3,7,6,8,5,2];
+const expectedTwoTreeArray = [2];
 
 
 describe('K-Ary Tree JS Functions', () => {
@@ -54,30 +47,38 @@ describe('K-Ary Tree JS Functions', () => {
       expect(() => {tree.find('string');}).toThrow();
     });
 
-    test(' This should return null if the value searched for does not exist in the tree', () => {
+    test('This should return null if the value searched for does not exist in the tree', () => {
       let tree = kAryTreeBuilder();
       expect(tree.find(10)).toBeNull();
       expect(tree.find(-10)).toBeNull();
     });
 
     describe('createString() prototype testing', () => {
-      test('This should return a string of the nodes in newline format when a normal tree is passed to this method ', () => {
+      test('This should return a string of the node values in newline format when a normal tree is passed to this method ', () => {
         let tree = kAryTreeBuilder();
         expect(tree.createString()).toEqual(expectedFullTreeString);
         expect(tree._children[0].createString()).toEqual(expectedTwoTreeString);
       });
 
-      test('This should return a string with the starter string and the node in string and newline format when a normal tree is passed and a start string', () => {
+      test('This should return a string with the starter string and the node values in string and newline format when a normal tree is passed and a start string', () => {
         let tree = kAryTreeBuilder(); 
         expect(tree.createString('test starter')).toEqual(`test starter\n${expectedFullTreeString}`);
         expect(tree._children[0].createString('test starter')).toEqual(`test starter\n${expectedTwoTreeString}`);
       });
+    });
 
-      // test(' This should PASS if the value searched for does not exist in the tree', () => {
-      //   let tree = kAryTreeBuilder();
-      //   expect(tree.find(10)).toBeNull();
-      //   expect(tree.find(-10)).toBeNull();
-      // });
+    describe('createArray() prototype testing', () => {
+      test('This should return an Array of the node values in newline format when a normal tree is passed to this method ', () => {
+        let tree = kAryTreeBuilder();
+        expect(tree.createArray()).toEqual(expectedFullTreeArray);
+        expect(tree._children[0].createArray()).toEqual(expectedTwoTreeArray);
+      });
+
+      test('This should return a string with the starter string and the node values in string and newline format when a normal tree is passed and a start string', () => {
+        let tree = kAryTreeBuilder(); 
+        expect(tree.createArray([555, 505])).toEqual([555, 505,1, 4, 3, 7, 6, 8, 5, 2]);
+        expect(tree._children[0].createArray([555, 505])).toEqual([555, 505,2]);
+      });
     });
 
   });
