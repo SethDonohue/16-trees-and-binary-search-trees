@@ -47,26 +47,26 @@ describe('Binary Tree JS Functions', () => {
       expect(tree.find(-10)).toBeNull();
     });
 
-    // describe('ToString() prototype', () => {
-    //   test('This test should pass when a normal tree is passed to this method and be in pre-order', () => {
-    //     let tree = kAryTreeBuilder();
-    //     expect(tree.toString(6)).toEqual(tree.right.left.left);
-    //     expect(tree.find(7)).toEqual(tree.right.left.right);
-    //     expect(tree.find(1)).toEqual(tree);
-    //   });
+    describe('ToString() prototype', () => {
+      test('This test should pass and return a string when a normal tree is passed to this method ', () => {
+        let tree = kAryTreeBuilder();
+        expect(tree.toString()).toEqual(tree.right.left.left);
+        expect(tree.find(7)).toEqual(tree.right.left.right);
+        expect(tree.find(1)).toEqual(tree);
+      });
 
-    //   test(' This test should PASS if a non-number is searched for', () => {
-    //     let tree = kAryTreeBuilder();
-    //     expect(tree.find(null)).toBeNull();
-    //     expect(tree.find('string')).toBeNull();
-    //   });
+      test(' This test should PASS if a non-number is searched for', () => {
+        let tree = kAryTreeBuilder();
+        expect(tree.find(null)).toBeNull();
+        expect(tree.find('string')).toBeNull();
+      });
 
-    //   test(' This test should PASS if the value searched for does not exist in the tree', () => {
-    //     let tree = kAryTreeBuilder();
-    //     expect(tree.find(10)).toBeNull();
-    //     expect(tree.find(-10)).toBeNull();
-    //   });
-    // });
+      test(' This test should PASS if the value searched for does not exist in the tree', () => {
+        let tree = kAryTreeBuilder();
+        expect(tree.find(10)).toBeNull();
+        expect(tree.find(-10)).toBeNull();
+      });
+    });
 
   });
 });

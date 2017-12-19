@@ -60,8 +60,33 @@ KAryTree.prototype.find = function(value){
 };
 
 //TODO: ADD toString METHOD USING BREADTH FIRST TRAVERSAL
+KAryTree.prototype.createString = function(str = ''){
+  let queue = new Queue();
+  queue.enqueue(this);
+  
+  let current = null;
+
+  while (queue.getLength() > 0) {
+    console.log(queue.getLength());
+    current = queue.dequeue();
+    if (str === '') {
+      str += JSON.stringify(current);
+    } else {
+      str += '\n' + JSON.stringify(current);
+    }
+    for (let child of current._children) {
+      queue.enqueue(child);
+    }
+  }
+  return str;
+};
+
+
 
 //TODO: ADD toArray METHOD USING DEPTH FIRST TRAVERSAL, need stack for this to work
+// KAryTree.prototype.toArray = function() {
+
+// };
 
 
 let one = new KAryTree(1);
@@ -83,7 +108,8 @@ three.appendChild(seven);
 
 six.appendChild(eight);
 
-// console.log(one.find(10));
+console.log(four.createString('test string'));
+// console.log(one.find(5));
 // console.log(one._children[1]._children[1]._children[0]);
 // console.log(one._children[1]._children[2]);
 
