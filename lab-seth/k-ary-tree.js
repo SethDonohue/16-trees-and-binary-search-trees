@@ -67,7 +67,7 @@ KAryTree.prototype.createString = function(str = ''){
   let current = null;
 
   while (queue.getLength() > 0) {
-    console.log(queue.getLength());
+    // console.log(queue.getLength());
     current = queue.dequeue();
     if (str === '') {
       str += JSON.stringify(current);
@@ -108,7 +108,7 @@ three.appendChild(seven);
 
 six.appendChild(eight);
 
-console.log(four.createString('test string'));
+// console.log(four.createString('test string'));
 // console.log(one.find(5));
 // console.log(one._children[1]._children[1]._children[0]);
 // console.log(one._children[1]._children[2]);

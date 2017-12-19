@@ -1,15 +1,15 @@
 
 'use strict';
-const binarySearchTree = require('../binary-search-tree');
+const BinarySearchTree = require('../binary-search-tree');
 
 const treeBuilder = () => {
-  let one = new binarySearchTree.BinarySearchTree(1);
-  let two = new binarySearchTree.BinarySearchTree(2);
-  let three = new binarySearchTree.BinarySearchTree(3);
-  let four = new binarySearchTree.BinarySearchTree(4);
-  let five = new binarySearchTree.BinarySearchTree(5);
-  let six = new binarySearchTree.BinarySearchTree(6);
-  let seven = new binarySearchTree.BinarySearchTree(7);
+  let one = new BinarySearchTree(1);
+  let two = new BinarySearchTree(2);
+  let three = new BinarySearchTree(3);
+  let four = new BinarySearchTree(4);
+  let five = new BinarySearchTree(5);
+  let six = new BinarySearchTree(6);
+  let seven = new BinarySearchTree(7);
 
   one.left = two;
   one.right = three;

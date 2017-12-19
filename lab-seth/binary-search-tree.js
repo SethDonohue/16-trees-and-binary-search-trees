@@ -40,3 +40,5 @@ class BinarySearchTree{
   //TODO: ADD REMOVE METHOD
 
 }
+
+module.exports = BinarySearchTree;

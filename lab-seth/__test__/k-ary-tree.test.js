@@ -25,47 +25,59 @@ const kAryTreeBuilder = () => {
   return one;
 };
 
-describe('Binary Tree JS Functions', () => {
+const expectedFullTreeString = `{"value":1,"_children":[{"value":2,"_children":[]},{"value":3,"_children":[{"value":5,"_children":[]},{"value":6,"_children":[{"value":8,"_children":[]}]},{"value":7,"_children":[]}]},{"value":4,"_children":[]}]}
+{"value":2,"_children":[]}
+{"value":3,"_children":[{"value":5,"_children":[]},{"value":6,"_children":[{"value":8,"_children":[]}]},{"value":7,"_children":[]}]}
+{"value":4,"_children":[]}
+{"value":5,"_children":[]}
+{"value":6,"_children":[{"value":8,"_children":[]}]}
+{"value":7,"_children":[]}
+{"value":8,"_children":[]}`;
+
+const expectedTwoTreeString = `{"value":2,"_children":[]}`;
+
+
+
+describe('K-Ary Tree JS Functions', () => {
   // afterEach(() => binaryTree.remove({}));
-  describe('Find() prototype', () => {
-    test('This test should pass when a normal case value is searched for', () => {
+  describe('find() prototype testing', () => {
+    test('This should return the found node when a normal case value is searched for', () => {
       let tree = kAryTreeBuilder();
       expect(tree.find(8)).toEqual(tree._children[1]._children[1]._children[0]);
       expect(tree.find(7)).toEqual(tree._children[1]._children[2]);
       expect(tree.find(1)).toEqual(tree);
     });
 
-    test(' This test should PASS if a non-number is searched for', () => {
+    test(' This should return null if a non-number is searched for', () => {
       let tree = kAryTreeBuilder();
       expect(() => {tree.find(null);}).toThrow();
       expect(() => {tree.find('string');}).toThrow();
     });
 
-    test(' This test should PASS if the value searched for does not exist in the tree', () => {
+    test(' This should return null if the value searched for does not exist in the tree', () => {
       let tree = kAryTreeBuilder();
       expect(tree.find(10)).toBeNull();
       expect(tree.find(-10)).toBeNull();
     });
 
-    describe('ToString() prototype', () => {
-      test('This test should pass and return a string when a normal tree is passed to this method ', () => {
+    describe('createString() prototype testing', () => {
+      test('This should return a string of the nodes in newline format when a normal tree is passed to this method ', () => {
         let tree = kAryTreeBuilder();
-        expect(tree.toString()).toEqual(tree.right.left.left);
-        expect(tree.find(7)).toEqual(tree.right.left.right);
-        expect(tree.find(1)).toEqual(tree);
+        expect(tree.createString()).toEqual(expectedFullTreeString);
+        expect(tree._children[0].createString()).toEqual(expectedTwoTreeString);
       });
 
-      test(' This test should PASS if a non-number is searched for', () => {
-        let tree = kAryTreeBuilder();
-        expect(tree.find(null)).toBeNull();
-        expect(tree.find('string')).toBeNull();
+      test('This should return a string with the starter string and the node in string and newline format when a normal tree is passed and a start string', () => {
+        let tree = kAryTreeBuilder(); 
+        expect(tree.createString('test starter')).toEqual(`test starter\n${expectedFullTreeString}`);
+        expect(tree._children[0].createString('test starter')).toEqual(`test starter\n${expectedTwoTreeString}`);
       });
 
-      test(' This test should PASS if the value searched for does not exist in the tree', () => {
-        let tree = kAryTreeBuilder();
-        expect(tree.find(10)).toBeNull();
-        expect(tree.find(-10)).toBeNull();
-      });
+      // test(' This should PASS if the value searched for does not exist in the tree', () => {
+      //   let tree = kAryTreeBuilder();
+      //   expect(tree.find(10)).toBeNull();
+      //   expect(tree.find(-10)).toBeNull();
+      // });
     });
 
   });
