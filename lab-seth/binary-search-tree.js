@@ -63,7 +63,7 @@ class BinarySearchTree{
       } 
     }
 
-    if(value < this.value) return this.left.getParent(value); return this.right.getParent(value);
+    if(value < this.value) return this.left.getParent(value); return this.right.getParent(value); //go left first, else go right.
 
   }
 
@@ -94,13 +94,10 @@ class BinarySearchTree{
         }
       }
 
-      if(value < current.value) {
-        if(current.left) return removeHelper(current.left); return null;
-      }
+      if(value < current.value) return removeHelper(current.left);
 
-      if(value > current.value) {
-        if(current.right) return removeHelper(current.right); return null;
-      }
+      if(value > current.value) return removeHelper(current.right);
+      
     };
     removeHelper(this);
     return this;
