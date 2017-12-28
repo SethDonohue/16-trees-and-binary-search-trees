@@ -81,14 +81,12 @@ class BinarySearchTree{
           (current.right.getMin()).left = current.left;
           parent.right = current.right;
         }
-
         if(current.value < parent.value ){
           (current.right.getMin()).left = current.left;
           parent.left = current.right;
         }
       }
       if(value < current.value) return removeHelper(current.left);
-
       if(value > current.value) return removeHelper(current.right);
     };
     removeHelper(this);
