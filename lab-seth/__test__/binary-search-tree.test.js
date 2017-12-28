@@ -3,31 +3,53 @@
 const BinarySearchTree = require('../binary-search-tree');
 
 const treeBuilder = () => {
-  let one = new BinarySearchTree(1);
-  let two = new BinarySearchTree(2);
-  let three = new BinarySearchTree(3);
+  let one = new BinarySearchTree(10);
+  let two = new BinarySearchTree(5);
+  let three = new BinarySearchTree(15);
   let four = new BinarySearchTree(4);
-  let five = new BinarySearchTree(5);
-  let six = new BinarySearchTree(6);
-  let seven = new BinarySearchTree(7);
+  let five = new BinarySearchTree(7);
+  let six = new BinarySearchTree(12);
+  let seven = new BinarySearchTree(17);
+  let eight = new BinarySearchTree(6);
+  let nine = new BinarySearchTree(9);
+  let ten = new BinarySearchTree(19);
 
   one.left = two;
   one.right = three;
-  three.left = four;
-  three.right = five;
-  four.left = six;
-  four.right = seven;
+  two.left = four;
+  two.right = five;
+  three.left = six;
+  three.right = seven;
+  five.left = eight;
+  five.right = nine;
+  seven.right = ten;
   return one;
 };
 
 describe('Binary Search Tree JS Functions', () => {
   // afterEach(() => binaryTree.remove({}));
   describe('Find() function', () => {
-    test('This test should pass when a normal case value is searched for', () => {
+    test('This test should pass when the root value is searched for', () => {
       let tree = treeBuilder();
-      expect(tree.find(6)).toEqual(tree.right.left.left);
-      expect(tree.find(7)).toEqual(tree.right.left.right);
-      expect(tree.find(1)).toEqual(tree);
+      expect(tree.find(10)).toEqual(tree);
+    });
+
+    test('This test should pass when a value that does not exist in the tree is searched for', () => {
+      let tree = treeBuilder();
+      expect(tree.find(3)).toEqual(false);
+      expect(tree.find(25)).toEqual(false);
+    });
+
+    test('This test should pass when a normal case value that is lower than the root is searched for', () => {
+      let tree = treeBuilder();
+      expect(tree.find(9)).toEqual(tree.left.right.right);
+      expect(tree.find(4)).toEqual(tree.left.left);
+    });
+
+    test('This test should pass when a normal case value that is higher than the root is searched for', () => {
+      let tree = treeBuilder();
+      expect(tree.find(19)).toEqual(tree.right.right.right);
+      expect(tree.find(12)).toEqual(tree.right.left);
     });
 
     // test(' This test should PASS if a non-number is searched for', () => {

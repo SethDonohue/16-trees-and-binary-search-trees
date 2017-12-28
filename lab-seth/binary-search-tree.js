@@ -29,12 +29,16 @@ class BinarySearchTree{
   }
 
   find(value){
-    if(value === this.value) return true;
+    if(value === this.value) return this;
     
     if(value < this.value){
+      if(this.left !== null) return this.left.find(value); return false;
+    }
+    
+    if(value > this.value){
       if(this.right !== null) return this.right.find(value); return false;
     }
-    if(this.left !== null) return this.left.find(value); return false;
+   
   }
 
   //TODO: ADD REMOVE METHOD
