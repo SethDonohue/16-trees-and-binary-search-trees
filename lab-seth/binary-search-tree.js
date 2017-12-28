@@ -50,9 +50,11 @@ class BinarySearchTree{
   }
 
   getParent(value){
-    console.log('getParent Value: ', value);
     if (this.value === value) return null; //no parents so return null;
-    if (this.right.value === value || this.left.value === value) return this; //no children left so this is the parent
+    if (this.right.value === value || this.left.value === value){
+      console.log('Parent.Value: ', this.value);
+      return this; //no children left so this is the parent
+    } 
 
     if (value < this.value) {
       if (this.left !== null) return this.left.getParent(value); return null;
@@ -65,32 +67,43 @@ class BinarySearchTree{
 
   //TODO: ADD REMOVE METHOD
   remove(value){
+    // console.log(parent.value);
+    console.log('This.Value; ', this.value);
+    // console.log(JSON.stringify(this, null, 2));
+
     let parent = this.getParent(value);
-    
-    if(this.value === value){
+    let current = this;
+
+    let remover = function (current){
       
-      if(this.left === null && this.right === null) return null; //node is only node to remove
+      if(current.value === value){
+      
+        if(current.left === null && current.right === null) return null; //node is only node to remove
 
-      if(this.value > parent.value ){
-        let min = this.right.getMin();
-        min.left = this.left;
-        parent.right = this.right;
+        if(current.value > parent.value ){
+          let min = current.right.getMin();
+          min.left = current.left;
+          parent.right = current.right;
+        }
+
+        if(current.value < parent.value ){
+          let min = current.right.getMin();
+          min.left = current.left;
+          parent.left = current.right;
+        }
       }
 
-      if(this.value < parent.value ){
-        let min = this.right.getMin();
-        min.left = this.left;
-        parent.left = this.right;
+      if (value < current.value) {
+        if (current.left) return remover(current.left); return null;
       }
-    }
 
-    if (value < this.value) {
-      if (this.left) return this.left.remove(value); return null;
-    }
-
-    if (value > this.value) {
-      if (this.right) return this.right.remove(value); return null;
-    }   
+      if (value > current.value) {
+        if (current.right) return remover(current.right); return null;
+      }
+      console.log(JSON.stringify(current, null, 2));
+    };
+    remover(this);
+    return this;
   }
 
 }
