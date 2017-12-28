@@ -65,23 +65,32 @@ class BinarySearchTree{
 
   //TODO: ADD REMOVE METHOD
   remove(value){
-    let current = this;
-
+    let parent = this.getParent(value);
+    
     if(this.value === value){
+      
       if(this.left === null && this.right === null) return null; //node is only node to remove
-      this.right
-      this.right = null;
-      if(getParent === false){ //no parents for this current node
+
+      if(this.value > parent.value ){
+        let min = this.right.getMin();
+        min.left = this.left;
+        parent.right = this.right;
+      }
+
+      if(this.value < parent.value ){
+        let min = this.right.getMin();
+        min.left = this.left;
+        parent.left = this.right;
       }
     }
 
-    if(this.right.value === value) this.right = null;
-    if(this.left.value === value) this.left = null;
-    if(this.left === null && this.right === null) return null;//remove this node
+    if (value < this.value) {
+      if (this.left) return this.left.remove(value); return null;
+    }
 
-    // if(this.)
-    
-
+    if (value > this.value) {
+      if (this.right) return this.right.remove(value); return null;
+    }   
   }
 
 }

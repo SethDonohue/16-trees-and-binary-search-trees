@@ -53,17 +53,26 @@ describe('Binary Search Tree JS Functions', () => {
     });
   });
 
-  describe.only('getMin() function', () => {
+  describe('getMin() function', () => {
     test('This test shoudl return the MIN node of a BST', () => {
       let tree = treeBuilder();
       expect((tree.getMin()).value).toEqual(4);
     });
   });
 
-  describe.only('getMax() function', () => {
+  describe('getMax() function', () => {
     test('This test should return the MAX node of a BST', () => {
       let tree = treeBuilder();
       expect((tree.getMax()).value).toEqual(19);
+    });
+  });
+
+  describe('getParent() function', () => {
+    test('This test should return the node Parent node of a value searched for', () => {
+      let tree = treeBuilder();
+      expect((tree.getParent(15)).value).toEqual(10);
+      expect((tree.getParent(19)).value).toEqual(17);
+      expect((tree.getParent(6)).value).toEqual(7);
     });
   });
 
