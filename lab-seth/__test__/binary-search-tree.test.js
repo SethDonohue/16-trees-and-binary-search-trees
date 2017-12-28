@@ -78,7 +78,7 @@ describe('Binary Search Tree JS Functions', () => {
   });
 
   describe('remove(value) function', () => {
-    test('This test should return the new Tree of a value searched for', () => {
+    test('This test should return the new Tree with the node removed that has the value', () => {
       let treeOne = treeBuilder();
       let treeTwo = treeBuilder();
       let treeThree = treeBuilder();
@@ -88,6 +88,14 @@ describe('Binary Search Tree JS Functions', () => {
       expect((treeTwo.remove(5)).value).toEqual(10);
       expect((treeThree.remove(7)).left.right.value).toEqual(9);
       expect((treeFour.remove(17)).right.right.value).toEqual(19);
+    });
+
+    test('This test should return the new Tree if a leaf is removed', () => {
+      let treeOne = treeBuilder();
+      let treeTwo = treeBuilder();
+      
+      expect((treeOne.remove(19)).right.right.value).toEqual(17);
+      expect((treeTwo.remove(4)).left.value).toEqual(5);
     });
   
     test('This test should return the original tree if value to be removed does not exist in the tree', () => {
