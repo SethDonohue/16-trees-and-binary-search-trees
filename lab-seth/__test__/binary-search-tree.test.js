@@ -51,60 +51,28 @@ describe('Binary Search Tree JS Functions', () => {
       expect(tree.find(19)).toEqual(tree.right.right.right);
       expect(tree.find(12)).toEqual(tree.right.left);
     });
+  });
 
-    // test(' This test should PASS if a non-number is searched for', () => {
-    //   let tree = treeBuilder();
-    //   // expect(tree.find(null)).toBeNull();
-    //   // expect(tree.find('string')).toBeNull();
-    // });
+  describe.only('getMin() function', () => {
+    test('This test shoudl return the MIN node of a BST', () => {
+      let tree = treeBuilder();
+      expect((tree.getMin()).value).toEqual(4);
+    });
+  });
 
-    // test(' This test should PASS if the value searched for does not exist in the tree', () => {
-    //   let tree = treeBuilder();
-    //   // expect(tree.find(10)).toBeNull();
-    //   // expect(tree.find(-10)).toBeNull();
-    // });
+  describe.only('getMax() function', () => {
+    test('This test should return the MAX node of a BST', () => {
+      let tree = treeBuilder();
+      expect((tree.getMax()).value).toEqual(19);
+    });
+  });
 
-    // describe('insert() function', () => {
-    //   test('This test should pass when a number value is passed o this method and inserted properly', () => {
-    //     let tree = treeBuilder();
-    //     // expect(tree.toString(6)).toEqual(tree.right.left.left);
-    //     // expect(tree.find(7)).toEqual(tree.right.left.right);
-    //     // expect(tree.find(1)).toEqual(tree);
-    //   });
-
-    //   test(' This test should PASS if a non-number is searched for', () => {
-    //     let tree = treeBuilder();
-    //     // expect(tree.find(null)).toBeNull();
-    //     // expect(tree.find('string')).toBeNull();
-    //   });
-
-    //   test(' This test should PASS if the value searched for does not exist in the tree', () => {
-    //     let tree = treeBuilder();
-    //     // expect(tree.find(10)).toBeNull();
-    //     // expect(tree.find(-10)).toBeNull();
-    //   });
-    // });
-
-    // describe('remove() function', () => {
-    //   test('This test should pass when a number value is passed o this method and removed properly', () => {
-    //     let tree = treeBuilder();
-    //     // expect(tree.toString(6)).toEqual(tree.right.left.left);
-    //     // expect(tree.find(7)).toEqual(tree.right.left.right);
-    //     // expect(tree.find(1)).toEqual(tree);
-    //   });
-
-    //   test(' This test should PASS if a non-number is passed to the remove() method', () => {
-    //     let tree = treeBuilder();
-    //     // expect(tree.find(null)).toBeNull();
-    //     // expect(tree.find('string')).toBeNull();
-    //   });
-
-    //   test(' This test should PASS if the value being removed does not exist in the tree', () => {
-    //     let tree = treeBuilder();
-    //     // expect(tree.find(10)).toBeNull();
-    //     // expect(tree.find(-10)).toBeNull();
-    //   });
-    // });
-
+  describe.only('getParent() function', () => {
+    test('This test should return the node Parent node of a value searched for', () => {
+      let tree = treeBuilder();
+      expect((tree.getParent(15)).value).toEqual(10);
+      expect((tree.getParent(19)).value).toEqual(17);
+      expect((tree.getParent(6)).value).toEqual(7);
+    });
   });
 });
