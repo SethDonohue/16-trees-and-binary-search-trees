@@ -68,16 +68,17 @@ describe('Binary Search Tree JS Functions', () => {
   });
 
   describe('getParent() function', () => {
-    test('This test should return the node Parent node of a value searched for', () => {
+    test('This test should return the Parent node of a value searched for', () => {
       let tree = treeBuilder();
       expect((tree.getParent(15)).value).toEqual(10);
-      expect((tree.getParent(19)).value).toEqual(17);
       expect((tree.getParent(6)).value).toEqual(7);
+      expect((tree.getParent(4)).value).toEqual(5);
+      expect((tree.getParent(19)).value).toEqual(17);
     });
   });
 
-  describe.only('remove(value) function', () => {
-    test('This test should return the node Parent node of a value searched for', () => {
+  describe('remove(value) function', () => {
+    test('This test should return the new Tree of a value searched for', () => {
       let treeOne = treeBuilder();
       let treeTwo = treeBuilder();
       let treeThree = treeBuilder();
@@ -87,6 +88,22 @@ describe('Binary Search Tree JS Functions', () => {
       expect((treeTwo.remove(5)).value).toEqual(10);
       expect((treeThree.remove(7)).left.right.value).toEqual(9);
       expect((treeFour.remove(17)).right.right.value).toEqual(19);
+    });
+  
+    test('This test should return the original tree if value to be removed does not exist in the tree', () => {
+      let treeOne = treeBuilder();
+      let treeTwo = treeBuilder();
+
+      expect((treeOne.remove(30))).toEqual(treeOne);
+      expect((treeTwo.remove(1))).toEqual(treeTwo);
+    });
+    
+    test('This test should return null if the Tree is only one node', () => {
+      let treeOne = new BinarySearchTree(10);
+      let treeTwo = new BinarySearchTree(15);
+
+      expect((treeOne.remove(10))).toBeNull();
+      expect((treeTwo.remove(10))).toEqual(treeTwo);
     });
   });
 });

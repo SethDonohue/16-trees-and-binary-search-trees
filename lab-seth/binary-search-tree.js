@@ -45,16 +45,23 @@ class BinarySearchTree{
     if (!this.left) return this; return this.left.getMin();
   }
 
-  getMax(){
+  getMax(){ //no needed at this time
     if (!this.right) return this; return this.right.getMax();
   }
 
   getParent(value){
-    if (this.value === value) return null; //no parents so return null;
-    if (this.right.value === value || this.left.value === value){
-      console.log('Parent.Value: ', this.value);
-      return this; //no children left so this is the parent
-    } 
+    if (this.value === value) return null; // value equals the first node which means there are no parents then return null.
+
+    if (!this.left && !this.right) return -1;// if no children and only one node exists and it does not equal the value we are searching for return -1;
+
+    if(!this.right && this.left.value === value) return this;
+    if(!this.left && this.right.value === value) return this;
+
+    if(this.right && this.left){
+      if (this.right.value === value || this.left.value === value){
+        return this; //no children left so this is the parent
+      } 
+    }
 
     if (value < this.value) {
       if (this.left !== null) return this.left.getParent(value); return null;
@@ -65,16 +72,15 @@ class BinarySearchTree{
     }
   }
 
-  //TODO: ADD REMOVE METHOD
   remove(value){
-    // console.log(parent.value);
-    console.log('This.Value; ', this.value);
-    // console.log(JSON.stringify(this, null, 2));
-
     let parent = this.getParent(value);
     let current = this;
 
-    let remover = function (current){
+    if(parent === null) return null; // no parents exist but the value we are looking for is in this single node as determined by getParent, so return null.
+
+    if(parent === -1) return this; // no parents exist and the value we are loking for is not in this tree as determined by getparent, so return original tree.
+
+    let removeHelper = function (current){
       
       if(current.value === value){
       
@@ -94,15 +100,14 @@ class BinarySearchTree{
       }
 
       if (value < current.value) {
-        if (current.left) return remover(current.left); return null;
+        if (current.left) return removeHelper(current.left); return null;
       }
 
       if (value > current.value) {
-        if (current.right) return remover(current.right); return null;
+        if (current.right) return removeHelper(current.right); return null;
       }
-      console.log(JSON.stringify(current, null, 2));
     };
-    remover(this);
+    removeHelper(this);
     return this;
   }
 
