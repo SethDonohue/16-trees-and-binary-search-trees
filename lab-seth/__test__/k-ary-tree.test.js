@@ -32,7 +32,6 @@ const expectedTwoTreeArray = [2];
 
 
 describe('K-Ary Tree JS Functions', () => {
-  // afterEach(() => binaryTree.remove({}));
   describe('find() prototype testing', () => {
     test('This should return the found node when a normal case value is searched for', () => {
       let tree = kAryTreeBuilder();

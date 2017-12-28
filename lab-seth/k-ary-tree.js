@@ -59,14 +59,12 @@ KAryTree.prototype.find = function(value){
   return null;
 };
 
-//TODO: ADD toString METHOD USING BREADTH FIRST TRAVERSAL
 KAryTree.prototype.createString = function(str = ''){
   let queue = new Queue();
   queue.enqueue(this);
   let current = null;
 
   while (queue.getLength() > 0) {
-    // console.log(queue.getLength());
     current = queue.dequeue();
     if (str === '') {
       str += JSON.stringify(current.value);
@@ -80,9 +78,6 @@ KAryTree.prototype.createString = function(str = ''){
   return str;
 };
 
-
-
-//TODO: ADD toArray METHOD USING DEPTH FIRST TRAVERSAL, need stack for this to work
 KAryTree.prototype.createArray = function (array = []) {
   let stack = new Stack();
   stack.push(this);
@@ -98,30 +93,5 @@ KAryTree.prototype.createArray = function (array = []) {
   }
   return array;
 };
-
-
-let one = new KAryTree(1);
-let two = new KAryTree(2);
-let three = new KAryTree(3);
-let four = new KAryTree(4);
-let five = new KAryTree(5);
-let six = new KAryTree(6);
-let seven = new KAryTree(7);
-let eight = new KAryTree(8);
-
-one.appendChild(two);
-one.appendChild(three);
-one.appendChild(four);
-
-three.appendChild(five);
-three.appendChild(six);
-three.appendChild(seven);
-
-six.appendChild(eight);
-
-// console.log(four.createString('test string'));
-// console.log(one.find(5));
-// console.log(one._children[1]._children[1]._children[0]);
-// console.log(one._children[1]._children[2]);
 
 module.exports = KAryTree;

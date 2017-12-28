@@ -13,7 +13,7 @@ class BinarySearchTree{
     if(this.value === value) throw new TypeError('Binary Search Tree - value is already present');
 
     if(value < this.value){
-      if(this.left){
+      if(!this.left){
         this.left = new BinarySearchTree(value);
         return;
       }

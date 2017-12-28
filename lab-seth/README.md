@@ -1,4 +1,10 @@
-//TODO: Include the Big O complexity (time and space) for all the implemented methods..
+<!-- TODO: Include the Big O complexity (time and space) for all the implemented methods.. -->
+<!-- in your README, write documentation for your data structures
+your documentation should includes code block usage examples
+provide instructions for:
+installing and using your data structure
+accessing each method
+running your tests -->
 
 ## REST API built using Express and MongoDB
 This is a server built from express and MongoDB that uses a MongoDB model to save api hits. It is setup as in inventory of mountains. 
