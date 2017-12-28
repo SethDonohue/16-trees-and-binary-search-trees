@@ -78,14 +78,12 @@ class BinarySearchTree{
         if(current.left === null && current.right === null) return null; //node is only node to remove
 
         if(current.value > parent.value ){
-          let min = current.right.getMin();
-          min.left = current.left;
+          (current.right.getMin()).left = current.left;
           parent.right = current.right;
         }
 
         if(current.value < parent.value ){
-          let min = current.right.getMin();
-          min.left = current.left;
+          (current.right.getMin()).left = current.left;
           parent.left = current.right;
         }
       }
