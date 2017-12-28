@@ -42,34 +42,29 @@ class BinarySearchTree{
   }
 
   getMin(){
-    if (!this.left) return this; return this.left.getMin();
+    if(!this.left) return this; return this.left.getMin();
   }
 
-  getMax(){ //no needed at this time
-    if (!this.right) return this; return this.right.getMax();
+  getMax(){ //not needed at this time
+    if(!this.right) return this; return this.right.getMax();
   }
 
   getParent(value){
-    if (this.value === value) return null; // value equals the first node which means there are no parents then return null.
+    if(this.value === value) return null; // value equals the first node which means there are no parents then return null.
 
-    if (!this.left && !this.right) return -1;// if no children and only one node exists and it does not equal the value we are searching for return -1;
+    if(!this.left && !this.right) return -1;// if no children and only one node exists and it does not equal the value we are searching for return -1;
 
     if(!this.right && this.left.value === value) return this;
     if(!this.left && this.right.value === value) return this;
 
     if(this.right && this.left){
-      if (this.right.value === value || this.left.value === value){
+      if(this.right.value === value || this.left.value === value){
         return this; //no children left so this is the parent
       } 
     }
 
-    if (value < this.value) {
-      if (this.left !== null) return this.left.getParent(value); return null;
-    }
+    if(value < this.value) return this.left.getParent(value); return this.right.getParent(value);
 
-    if (value > this.value) {
-      if (this.right !== null) return this.right.getParent(value); return null;
-    }
   }
 
   remove(value){
@@ -99,12 +94,12 @@ class BinarySearchTree{
         }
       }
 
-      if (value < current.value) {
-        if (current.left) return removeHelper(current.left); return null;
+      if(value < current.value) {
+        if(current.left) return removeHelper(current.left); return null;
       }
 
-      if (value > current.value) {
-        if (current.right) return removeHelper(current.right); return null;
+      if(value > current.value) {
+        if(current.right) return removeHelper(current.right); return null;
       }
     };
     removeHelper(this);
