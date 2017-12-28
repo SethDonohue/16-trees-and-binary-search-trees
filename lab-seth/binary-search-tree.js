@@ -57,11 +57,8 @@ class BinarySearchTree{
     if(!this.right && this.left.value === value) return this;
     if(!this.left && this.right.value === value) return this;
 
-    if(this.right && this.left){
-      if(this.right.value === value || this.left.value === value){
-        return this; //no children left so this is the parent
-      } 
-    }
+    if(this.right && this.left)
+      if(this.right.value === value || this.left.value === value) return this; //no children left so this is the parent
 
     if(value < this.value) return this.left.getParent(value); return this.right.getParent(value); //go left first, else go right.
 
@@ -76,7 +73,6 @@ class BinarySearchTree{
     if(parent === -1) return this; // no parents exist and the value we are loking for is not in this tree as determined by getparent, so return original tree.
 
     let removeHelper = function (current){
-      
       if(current.value === value){
       
         if(current.left === null && current.right === null) return null; //node is only node to remove
@@ -93,16 +89,13 @@ class BinarySearchTree{
           parent.left = current.right;
         }
       }
-
       if(value < current.value) return removeHelper(current.left);
 
       if(value > current.value) return removeHelper(current.right);
-      
     };
     removeHelper(this);
     return this;
   }
-
 }
 
 module.exports = BinarySearchTree;
