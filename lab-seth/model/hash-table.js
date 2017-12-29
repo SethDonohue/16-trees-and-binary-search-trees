@@ -16,7 +16,6 @@ module.exports = class HashTable{
     for(let i in key){
       rawHash += key.charCodeAt(i);
     }
-
     return rawHash % this._capacity;
   }
 
@@ -64,5 +63,4 @@ module.exports = class HashTable{
     }
     return false;
   }
-
 };
