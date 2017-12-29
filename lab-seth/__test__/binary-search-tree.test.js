@@ -1,18 +1,20 @@
 
 'use strict';
-const BinarySearchTree = require('../binary-search-tree');
+const BinarySearchTree = require('../model/binary-search-tree');
 
 const treeBuilder = () => {
-  let one = new BinarySearchTree(10);
-  let two = new BinarySearchTree(5);
-  let three = new BinarySearchTree(15);
-  let four = new BinarySearchTree(4);
-  let five = new BinarySearchTree(7);
-  let six = new BinarySearchTree(12);
-  let seven = new BinarySearchTree(17);
-  let eight = new BinarySearchTree(6);
-  let nine = new BinarySearchTree(9);
-  let ten = new BinarySearchTree(19);
+  let one = new BinarySearchTree('f', 10);
+  let two = new BinarySearchTree('h', 5);
+  let three = new BinarySearchTree('d', 15);
+  let four = new BinarySearchTree('j', 4);
+  let five = new BinarySearchTree('g', 7);
+  let six = new BinarySearchTree('e', 12);
+  let seven = new BinarySearchTree('b', 17);
+  let eight = new BinarySearchTree('k', 6);
+  let nine = new BinarySearchTree('i', 9);
+  let ten = new BinarySearchTree('c', 19);
+  let eleven = new BinarySearchTree('a', 21);
+  let twelve = new BinarySearchTree('l', 1);
 
   one.left = two;
   one.right = three;
@@ -20,24 +22,25 @@ const treeBuilder = () => {
   two.right = five;
   three.left = six;
   three.right = seven;
-  five.left = eight;
-  five.right = nine;
-  seven.right = ten;
+  four.left = eight;
+  four.right = nine;
+  seven.left = ten;
+  seven.right = eleven;
+  eight.left = twelve;
   return one;
 };
 
 describe('Binary Search Tree JS Functions', () => {
-  // afterEach(() => binaryTree.remove({}));
-  describe('Find() function', () => {
+  describe('Find(key) function', () => {
     test('This test should pass when the root value is searched for', () => {
       let tree = treeBuilder();
-      expect(tree.find(10)).toEqual(tree);
+      expect(tree.find('q')).toEqual(tree);
     });
 
     test('This test should pass when a value that does not exist in the tree is searched for', () => {
       let tree = treeBuilder();
-      expect(tree.find(3)).toEqual(false);
-      expect(tree.find(25)).toEqual(false);
+      expect(tree.find('a')).toEqual(false);
+      expect(tree.find('z')).toEqual(false);
     });
 
     test('This test should pass when a normal case value that is lower than the root is searched for', () => {
